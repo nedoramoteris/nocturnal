@@ -1,0 +1,42 @@
+  <link href="https://fonts.cdnfonts.com/css/lemonmilk" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocturnal Emporium - RPG Supplies</title>
+    <link rel="stylesheet" href="nocturnal.css">
+</head>
+<body>
+    
+        <header>
+            <h1 class="store-title">NOCTURNAL EMPORIUM</h1>
+            <p class="store-subtitle">Premium supplies for the supernatural community</p>
+        </header>
+        <div class="container">
+        <nav class="category-nav">
+            <button class="category-btn active" data-category="all">Visos prekės</button>
+            <button class="category-btn" data-category="vampire">Vampyrams</button>
+            <button class="category-btn" data-category="hunter">Medžiotojams</button>
+          <button class="category-btn" data-category="witches">Raganoms</button>
+          <button class="category-btn" data-category="werewolf">Vilkolakiams</button>
+            <button class="category-btn" data-category="universal">Universalios prekės</button>
+        </nav>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="cart-btn" id="cartBtn">
+            <span class="cart-count" id="cartCount">0</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a2988e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <script src="nocturnal.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+// Product Data
+const products = [
+    {
+        id: 1,
+        title: "SINTETINIS KRAUJO PAKAITALAS",
+        description: "Sintetinė alternatyva žmonių ar gyvūnų kraujui. Sudėtyje yra visos vampyrams reikalingos maistinės medžiagos.<br><b>Galimos spalvos:</b> Coffee Black, Crimson Blood, Mojito Green, Orange Juice.",
+        category: "vampire",
+        variants: "1 L / 3 L / 5 L",
+        price: 9.99,
+        image: "https://i.pinimg.com/236x/73/59/6d/73596d81bb3aecafee400059c583c2e3.jpg"
+    },
+    {
+        id: 2,
+        title: "APSAUGINIS KREMAS NUO SAULĖS",
+        description: "Padengia odą apsauginiu sluoksniu, kuris neleidžia prasiskverbti saulės spinduliams, todėl oda tiesioginėje saulėkaitoje nežvilga.",
+        category: "vampire",
+        variants: "30 ml / 100 ml / 500 ml",
+        price: 39.99,
+        image: "https://i.pinimg.com/236x/81/49/71/814971cbcbd5d80836907551cc9b1814.jpg"
+    },
+    {
+        id: 3,
+        title: "ANTI-POWERS POTION",
+        description: "Nuodai, laikinai atimantys vampyrų antgamtinius gebėjimus, įskaitant jėgą ir greitį.<br><b>Parduodami tik įgaliotiems asmenims</b>",
+        category: "hunter",
+        variants: "30 ml",
+        price: 5.99,
+        image: "https://i.pinimg.com/236x/6d/0c/2c/6d0c2c49d9e3cd60e1bceaabc9510ac3.jpg"
+    },
+    {
+        id: 4,
+        title: "EMOTIONAL SOBRIETY POTION",
+        description: "Skirtas numalšinti neracionalias emocijas ir įnešti balanso, kad sudėtingose situacijose jį suvartojęs asmuo sugebėtų mąstyti šaltai ir racionaliai, užuot kliovęsis karštomis, klaidinančiomis emocijomis.",
+        category: "universal",
+        variants: "30 ml",
+        price: 49.99,
+        image: "https://i.pinimg.com/236x/fd/c7/ce/fdc7ce86e335a42610228d51f1e6978c.jpg"
+    },
+    
+];
+
+// DOM Elements
+const productsGrid = document.getElementById('productsGrid');
+const categoryBtns = document.querySelectorAll('.category-btn');
+const cartBtn = document.getElementById('cartBtn');
+const cartCount = document.getElementById('cartCount');
+
+// Cart State
+let cart = [];
+
+// Display Products
+function displayProducts(filter = 'all') {
+    productsGrid.innerHTML = '';
+    
+    const filteredProducts = filter === 'all' 
+        ? products 
+        : products.filter(product => product.category === filter);
+    
+    filteredProducts.forEach(product => {
+        const categoryClass = `${product.category}-category`;
+        const categoryText = product.category === 'vampire' ? 'Vampyrams' 
+                  : product.category === 'hunter' ? 'Medžiotojams'
+                  : product.category === 'witches' ? 'Raganoms'
+                  : product.category === 'werewolf' ? 'Vilkolakiams'
+                  : 'Tinka visiems';
+        
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.title}" class="product-image">
+            <div class="product-info">
+                <span class="product-category ${categoryClass}">${categoryText}</span>
+                <h3 class="product-title">${product.title}</h3>
+                <p class="product-description">${product.description}</p>
+                <p class="product-variants">${product.variants}</p>
+                <div class="product-footer">
+                    <span class="product-price">nuo €${product.price.toFixed(2)}</span>
+                    <button class="add-to-cart" data-id="${product.id}">į krepšelį</button>
+                </div>
+            </div>
+        `;
+        
+        productsGrid.appendChild(productCard);
+    });
+    
+    // Add event listeners to new buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+}
+
+// Filter Products by Category
+function filterProducts() {
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const category = btn.dataset.category;
+            displayProducts(category);
+        });
+    });
+}
+
+// Add to Cart Functionality
+function addToCart(e) {
+    const productId = parseInt(e.target.dataset.id);
+    const product = products.find(p => p.id === productId);
+    
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+    
+    updateCartCount();
+    showCartNotification(product.title);
+    updateCartPopup(); // Update the popup if it's open
+}
+
+// Update Cart Count
+function updateCartCount() {
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = totalItems;
+}
+
+// Show Notification
+function showCartNotification(productName) {
+    const notification = document.createElement('div');
+    notification.style.position = 'fixed';
+    notification.style.bottom = '100px';
+    notification.style.right = '30px';
+    notification.style.backgroundColor = '#292725';
+    notification.style.color = '#a2988e';
+    notification.style.padding = '10px 15px';
+    notification.style.borderRadius = '4px';
+    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+    notification.style.zIndex = '1000';
+    notification.style.fontSize = '12px';
+    notification.style.transition = 'all 0.3s ease';
+    notification.textContent = `pridėta į krepšelį ${productName}`;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 2000);
+}
+
+// Cart Popup Functions
+function toggleCartPopup() {
+    const popup = document.getElementById('cartPopup');
+    if (popup) {
+        popup.remove();
+    } else {
+        showCartPopup();
+    }
+}
+
+// Update cart popup content without closing/reopening
+function updateCartPopup() {
+    const popup = document.getElementById('cartPopup');
+    if (!popup) return;
+    
+    if (cart.length === 0) {
+        popup.innerHTML = '<p style="text-align: center;">krepšelis tuščias</p>';
+    } else {
+        let total = 0;
+        popup.innerHTML = `
+            <h3 style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980; margin-bottom: 15px; font-size: 16px; letter-spacing: 1px;">Prekės krepšelyje:</h3>
+            <div id="cartItems"></div>
+            <div style="border-top: 1px solid #333330; margin-top: 15px; padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980;">Total:</span>
+                <span id="cartTotal" style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980;">€0.00</span>
+            </div>
+        `;
+        
+        const cartItemsContainer = popup.querySelector('#cartItems');
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.style.marginBottom = '15px';
+            itemElement.style.paddingBottom = '15px';
+            itemElement.style.borderBottom = '1px solid #333330';
+            itemElement.style.fontSize = '12px'; // Smaller font size
+            itemElement.innerHTML = `
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <img src="${item.image}" alt="${item.title}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: bold;">${item.title}</span>
+                            <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center;">
+                                <button class="cart-item-decrease" data-id="${item.id}" style="background: #444b44; color: #BFA980; border: none; border-radius: 4px; width: 20px; height: 20px; cursor: pointer;">-</button>
+                                <span style="margin: 0 10px;">${item.quantity}</span>
+                                <button class="cart-item-increase" data-id="${item.id}" style="background: #444b44; color: #BFA980; border: none; border-radius: 4px; width: 20px; height: 20px; cursor: pointer;">+</button>
+                            </div>
+                            <button class="cart-item-remove" data-id="${item.id}" style="background: #934343; color: #f5f5f5; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+            
+            total += item.price * item.quantity;
+        });
+        
+        popup.querySelector('#cartTotal').textContent = `€${total.toFixed(2)}`;
+        
+        // Add event listeners to cart item buttons
+        addCartItemEventListeners(popup);
+    }
+}
+
+function showCartPopup() {
+    const popup = document.createElement('div');
+    popup.id = 'cartPopup';
+    popup.style.position = 'fixed';
+    popup.style.bottom = '100px';
+    popup.style.right = '30px';
+    popup.style.width = '300px';
+    popup.style.maxHeight = '400px';
+    popup.style.overflowY = 'auto';
+    popup.style.backgroundColor = '#292725';
+    popup.style.borderRadius = '7px';
+    popup.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
+    popup.style.zIndex = '1000';
+    popup.style.padding = '15px';
+    popup.style.color = '#a2988e';
+    
+    if (cart.length === 0) {
+        popup.innerHTML = '<p style="text-align: center;">krepšelis tuščias</p>';
+    } else {
+        let total = 0;
+        popup.innerHTML = `
+            <h3 style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980; margin-bottom: 15px; font-size: 16px; letter-spacing: 1px;">Prekės krepšelyje:</h3>
+            <div id="cartItems"></div>
+            <div style="border-top: 1px solid #333330; margin-top: 15px; padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980;">Total:</span>
+                <span id="cartTotal" style="font-family: 'Lemon/Milk light', sans-serif; color: #BFA980;">€0.00</span>
+            </div>
+        `;
+        
+        const cartItemsContainer = popup.querySelector('#cartItems');
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.style.marginBottom = '15px';
+            itemElement.style.paddingBottom = '15px';
+            itemElement.style.borderBottom = '1px solid #333330';
+            itemElement.style.fontSize = '12px'; // Smaller font size
+            itemElement.innerHTML = `
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <img src="${item.image}" alt="${item.title}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: bold;">${item.title}</span>
+                            <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center;">
+                                <button class="cart-item-decrease" data-id="${item.id}" style="background: #444b44; color: #BFA980; border: none; border-radius: 4px; width: 20px; height: 20px; cursor: pointer;">-</button>
+                                <span style="margin: 0 10px;">${item.quantity}</span>
+                                <button class="cart-item-increase" data-id="${item.id}" style="background: #444b44; color: #BFA980; border: none; border-radius: 4px; width: 20px; height: 20px; cursor: pointer;">+</button>
+                            </div>
+                            <button class="cart-item-remove" data-id="${item.id}" style="background: #934343; color: #f5f5f5; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+            
+            total += item.price * item.quantity;
+        });
+        
+        popup.querySelector('#cartTotal').textContent = `€${total.toFixed(2)}`;
+        
+        // Add event listeners to cart item buttons
+        addCartItemEventListeners(popup);
+    }
+    
+    document.body.appendChild(popup);
+    
+    // Close popup when clicking outside
+    const closePopupHandler = function(e) {
+        if (!popup.contains(e.target) && e.target !== cartBtn && !cartBtn.contains(e.target)) {
+            popup.remove();
+            document.removeEventListener('click', closePopupHandler);
+        }
+    };
+    
+    document.addEventListener('click', closePopupHandler);
+}
+
+// Helper function to add event listeners to cart item buttons
+function addCartItemEventListeners(popup) {
+    popup.querySelectorAll('.cart-item-decrease').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            const id = parseInt(e.target.dataset.id);
+            const item = cart.find(item => item.id === id);
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                cart = cart.filter(item => item.id !== id);
+            }
+            updateCartCount();
+            updateCartPopup();
+        });
+    });
+    
+    popup.querySelectorAll('.cart-item-increase').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            const id = parseInt(e.target.dataset.id);
+            const item = cart.find(item => item.id === id);
+            item.quantity += 1;
+            updateCartCount();
+            updateCartPopup();
+        });
+    });
+    
+    popup.querySelectorAll('.cart-item-remove').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            const id = parseInt(e.target.dataset.id);
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            updateCartPopup();
+        });
+    });
+}
+
+// Initialize
+displayProducts();
+filterProducts();
+
+// Add click event to cart button
+cartBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent immediate closing
+    toggleCartPopup();
+});
