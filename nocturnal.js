@@ -5,7 +5,7 @@ const products = [
         title: "SINTETINIS KRAUJO PAKAITALAS",
         description: "Sintetinė alternatyva žmonių ar gyvūnų kraujui. Sudėtyje yra visos vampyrams reikalingos maistinės medžiagos.<br><b>Galimos spalvos:</b> Coffee Black, Crimson Blood, Mojito Green, Orange Juice.",
         category: "vampire",
-        variants: "1 L / 3 L / 5 L",
+        variants: "1 l / 3 l / 5 l",
         price: 9.99,
         image: "https://i.pinimg.com/236x/73/59/6d/73596d81bb3aecafee400059c583c2e3.jpg"
     },
