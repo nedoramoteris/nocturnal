@@ -61,6 +61,14 @@ const products = [
         variants: "Įvairių spalvų",
         price: 39.99,
         image: "https://i.pinimg.com/736x/70/34/65/703465da726a15afdd7e3c85a3e5a8d4.jpg"
+    },
+  {id: 8,
+        title: "Augantys drabužiai",
+        description: "Vaikiški drabužiai, prisitaikantys prie sparčiai augančių mažųjų mišrūnų kūnų, kad spintos turinys tarnautų ilgiau.",
+        category: "hybrid",
+        variants: "Įvairių dizainų",
+        price: 15.99,
+        image: "https://i.pinimg.com/736x/77/2d/a3/772da39c4acc52794c497be2373d412a.jpg"
     }
 ];
 
@@ -90,6 +98,7 @@ function displayProducts(filter = 'all') {
                   : product.category === 'hunter' ? 'Medžiotojams'
                   : product.category === 'witches' ? 'Raganoms'
                   : product.category === 'werewolf' ? 'Vilkolakiams'
+        : product.category === 'hybrid' ? 'Mišrūnams'
                   : 'Tinka visiems';
         
         const productCard = document.createElement('div');
@@ -102,7 +111,7 @@ function displayProducts(filter = 'all') {
                 <p class="product-description">${product.description}</p>
                 <p class="product-variants">${product.variants}</p>
                 <div class="product-footer">
-                    <span class="product-price">${product.price.toFixed(2)} €</span>
+                    <span class="product-price">nuo ${product.price.toFixed(2)} €</span>
                     <button class="add-to-cart" data-id="${product.id}">į krepšelį</button>
                 </div>
             </div>
