@@ -74,9 +74,17 @@ const products = [
         title: "Miego tabletės",
         description: "Tabletės, leidžiančios vampyrams užmigti 7-9 valandoms.",
         category: "vampire",
-        variants: "10 vnt.",
+        variants: "20 vnt.",
         price: 79,
         image: "https://i.pinimg.com/736x/35/ad/58/35ad583bdbca4308af05c31551bdd283.jpg"
+    },
+  {id: 10,
+        title: "Imuniteto tabletės",
+        description: "Specialiai medžiotojams pritaikytos tabletės, apsaugančios nuo virtimo vampyru suvartojus per 5 minutes po įkandimo.",
+        category: "hunter",
+        variants: "9 tabletės (3 dozės)",
+        price: 330,
+        image: "https://i.pinimg.com/736x/b3/f7/45/b3f7458e83a64e38be6a02aff890bce5.jpg"
     }
 ];
 
