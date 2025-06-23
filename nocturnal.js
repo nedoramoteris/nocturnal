@@ -36,6 +36,15 @@ const products = [
         price: 49.99,
         image: "https://i.pinimg.com/236x/fd/c7/ce/fdc7ce86e335a42610228d51f1e6978c.jpg"
     },
+    {
+        id: 5,
+        title: "Neužpučiamos žvakės",
+        description: "Žvakės, užgęstančios tik ištarus užpūtimo burtažodį. Puikiai tinka ritualams lauke vėjuotomis dienomis.",
+        category: "witches",
+        variants: "3 vnt.",
+        price: 8.99,
+        image: "https://i.imgur.com/j47ZNYL.jpeg"
+    }
     
 ];
 
