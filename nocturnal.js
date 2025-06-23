@@ -2,7 +2,7 @@
 const products = [
     {
         id: 1,
-        title: "SINTETINIS KRAUJO PAKAITALAS",
+        title: "Sintetinis kraujo pakaitalas",
         description: "Sintetinė alternatyva žmonių ar gyvūnų kraujui. Sudėtyje yra visos vampyrams reikalingos maistinės medžiagos.",
         category: "vampire",
         variants: "Coffee Black, Crimson Blood, Mojito Green, Orange Juice",
@@ -11,7 +11,7 @@ const products = [
     },
     {
         id: 2,
-        title: "APSAUGINIS KREMAS NUO SAULĖS",
+        title: "Apsauginis losjonas nuo saulės",
         description: "Padengia odą apsauginiu sluoksniu, kuris neleidžia prasiskverbti saulės spinduliams, todėl oda tiesioginėje saulėkaitoje nežvilga.",
         category: "vampire",
         variants: "30 ml / 100 ml / 500 ml",
@@ -20,7 +20,7 @@ const products = [
     },
     {
         id: 3,
-        title: "ANTI-POWERS POTION",
+        title: "Anti-powers eliksyras",
         description: "Nuodai, laikinai atimantys vampyrų antgamtinius gebėjimus, įskaitant jėgą ir greitį. <i>Parduodama tik įgaliotiems asmenims.</i>",
         category: "hunter",
         variants: "30 ml",
@@ -29,7 +29,7 @@ const products = [
     },
     {
         id: 4,
-        title: "EMOTIONAL SOBRIETY POTION",
+        title: "Emotional Sobriety eliksyras",
         description: "Skirtas numalšinti neracionalias emocijas ir įnešti balanso, kad sudėtingose situacijose jį suvartojęs asmuo sugebėtų mąstyti šaltai ir racionaliai, užuot kliovęsis karštomis, klaidinančiomis emocijomis.",
         category: "universal",
         variants: "50 ml",
