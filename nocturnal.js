@@ -11,7 +11,7 @@ const products = [
     },
     {
         id: 2,
-        title: "APSAUGINIS KREMAS NUO SAULĖS",
+        title: "APSAUGINIS losjonas NUO SAULĖS",
         description: "Padengia odą apsauginiu sluoksniu, kuris neleidžia prasiskverbti saulės spinduliams, todėl oda tiesioginėje saulėkaitoje nežvilga.",
         category: "vampire",
         variants: "30 ml / 100 ml / 500 ml",
