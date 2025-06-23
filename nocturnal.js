@@ -11,7 +11,7 @@ const products = [
     },
     {
         id: 2,
-        title: "APSAUGINIS losjonas NUO SAULĖS",
+        title: "APSAUGINIS KREMAS NUO SAULĖS",
         description: "Padengia odą apsauginiu sluoksniu, kuris neleidžia prasiskverbti saulės spinduliams, todėl oda tiesioginėje saulėkaitoje nežvilga.",
         category: "vampire",
         variants: "30 ml / 100 ml / 500 ml",
@@ -53,6 +53,14 @@ const products = [
         variants: "20 ml",
         price: 20.99,
         image: "https://i.pinimg.com/736x/e4/7a/b8/e47ab8788989e7aebf4dd4a30880234a.jpg"
+    },
+  {id: 7,
+        title: "Kontaktiniai lęšiai",
+        description: "Nuodams atsparūs daugkartinio naudojimo kontaktiniai lęšiai.",
+        category: "vampire",
+        variants: "Įvairių spalvų",
+        price: 39.99,
+        image: "https://i.pinimg.com/736x/70/34/65/703465da726a15afdd7e3c85a3e5a8d4.jpg"
     }
 ];
 
@@ -94,7 +102,7 @@ function displayProducts(filter = 'all') {
                 <p class="product-description">${product.description}</p>
                 <p class="product-variants">${product.variants}</p>
                 <div class="product-footer">
-                    <span class="product-price">nuo €${product.price.toFixed(2)}</span>
+                    <span class="product-price">${product.price.toFixed(2)} €</span>
                     <button class="add-to-cart" data-id="${product.id}">į krepšelį</button>
                 </div>
             </div>
