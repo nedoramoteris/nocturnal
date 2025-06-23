@@ -3,11 +3,11 @@ const products = [
     {
         id: 1,
         title: "SINTETINIS KRAUJO PAKAITALAS",
-        description: "Sintetinė alternatyva žmonių ar gyvūnų kraujui. Sudėtyje yra visos vampyrams reikalingos maistinės medžiagos.<br><b>Galimos spalvos:</b> Coffee Black, Crimson Blood, Mojito Green, Orange Juice.",
+        description: "Sintetinė alternatyva žmonių ar gyvūnų kraujui. Sudėtyje yra visos vampyrams reikalingos maistinės medžiagos.",
         category: "vampire",
-        variants: "1 l / 3 l / 5 l",
+        variants: "Coffee Black, Crimson Blood, Mojito Green, Orange Juice",
         price: 9.99,
-        image: "https://i.pinimg.com/236x/73/59/6d/73596d81bb3aecafee400059c583c2e3.jpg"
+        image: "https://i.pinimg.com/736x/85/73/b0/8573b001671dd018b018441cb17b6b77.jpg"
     },
     {
         id: 2,
@@ -16,25 +16,25 @@ const products = [
         category: "vampire",
         variants: "30 ml / 100 ml / 500 ml",
         price: 39.99,
-        image: "https://i.pinimg.com/236x/81/49/71/814971cbcbd5d80836907551cc9b1814.jpg"
+        image: "https://i.pinimg.com/736x/3a/69/18/3a6918e32feefa76d6fd0385d63d298e.jpg"
     },
     {
         id: 3,
         title: "ANTI-POWERS POTION",
-        description: "Nuodai, laikinai atimantys vampyrų antgamtinius gebėjimus, įskaitant jėgą ir greitį.<br><b>Parduodami tik įgaliotiems asmenims</b>",
+        description: "Nuodai, laikinai atimantys vampyrų antgamtinius gebėjimus, įskaitant jėgą ir greitį. <i>Parduodama tik įgaliotiems asmenims.</i>",
         category: "hunter",
         variants: "30 ml",
         price: 5.99,
-        image: "https://i.pinimg.com/236x/6d/0c/2c/6d0c2c49d9e3cd60e1bceaabc9510ac3.jpg"
+        image: "https://i.pinimg.com/736x/aa/87/f6/aa87f61c925741ff9f88c07125e87cd2.jpg"
     },
     {
         id: 4,
         title: "EMOTIONAL SOBRIETY POTION",
         description: "Skirtas numalšinti neracionalias emocijas ir įnešti balanso, kad sudėtingose situacijose jį suvartojęs asmuo sugebėtų mąstyti šaltai ir racionaliai, užuot kliovęsis karštomis, klaidinančiomis emocijomis.",
         category: "universal",
-        variants: "30 ml",
+        variants: "50 ml",
         price: 49.99,
-        image: "https://i.pinimg.com/236x/fd/c7/ce/fdc7ce86e335a42610228d51f1e6978c.jpg"
+        image: "https://i.pinimg.com/736x/79/e7/93/79e7936a95998cc695bed8fd1173696c.jpg"
     },
     {
         id: 5,
@@ -44,8 +44,16 @@ const products = [
         variants: "3 vnt.",
         price: 8.99,
         image: "https://i.imgur.com/j47ZNYL.jpeg"
+    },
+    {
+        id: 6,
+        title: "Lašai nuo sapnų",
+        description: "Geriamieji lašai tiems, kuriems tinkamai išsimiegoti trukdo neramūs sapnai. Ypač veiksmingai išvaiko košmarus.",
+        category: "universal",
+        variants: "20 ml",
+        price: 20.99,
+        image: "https://i.pinimg.com/736x/e4/7a/b8/e47ab8788989e7aebf4dd4a30880234a.jpg"
     }
-    
 ];
 
 // DOM Elements
@@ -61,9 +69,12 @@ let cart = [];
 function displayProducts(filter = 'all') {
     productsGrid.innerHTML = '';
     
+    // Sort products by ID in descending order
+    const sortedProducts = [...products].sort((a, b) => b.id - a.id);
+    
     const filteredProducts = filter === 'all' 
-        ? products 
-        : products.filter(product => product.category === filter);
+        ? sortedProducts 
+        : sortedProducts.filter(product => product.category === filter);
     
     filteredProducts.forEach(product => {
         const categoryClass = `${product.category}-category`;
