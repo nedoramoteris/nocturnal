@@ -162,6 +162,15 @@ header {
   letter-spacing:1px;
   font-size:9px;
 }
+.hybrid-category {
+    background: #524047;
+    color: #f5f5f5;
+    color: #f5f5f5;
+  text-transform:uppercase;
+  font-family:'lemon/milk light', sans-serif;
+  letter-spacing:1px;
+  font-size:9px;
+}
 
 .product-title {
     font-family: 'Lemon/Milk light', sans-serif;
