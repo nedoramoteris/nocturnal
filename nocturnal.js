@@ -85,6 +85,14 @@ const products = [
         variants: "9 tabletės (3 dozės)",
         price: 330,
         image: "https://i.pinimg.com/736x/b3/f7/45/b3f7458e83a64e38be6a02aff890bce5.jpg"
+    },
+   {id: 11,
+        title: "The Expandopants",
+        description: "Itin tamprūs ir plyšimui atsparūs apatiniai. Kad po netyčio persikeitimo netektų slėptis už krūmo.",
+        category: "werewolf",
+        variants: "Įvairių dizainų",
+        price: 9.99,
+        image: "https://i.pinimg.com/736x/5d/3d/41/5d3d419dadc2419c0c29d3ac3bde61a2.jpg"
     }
 ];
 
