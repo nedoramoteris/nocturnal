@@ -69,6 +69,14 @@ const products = [
         variants: "Įvairių dizainų",
         price: 15.99,
         image: "https://i.pinimg.com/736x/77/2d/a3/772da39c4acc52794c497be2373d412a.jpg"
+    },
+  {id: 9,
+        title: "Miego tabletės",
+        description: "Tabletės, leidžiančios vampyrams užmigti 7-9 valandoms.",
+        category: "vampire",
+        variants: "10 vnt.",
+        price: 79,
+        image: "https://i.pinimg.com/736x/35/ad/58/35ad583bdbca4308af05c31551bdd283.jpg"
     }
 ];
 
