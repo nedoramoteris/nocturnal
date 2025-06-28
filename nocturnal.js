@@ -88,7 +88,7 @@ const products = [
     },
    {id: 11,
         title: "The Expandopants",
-        description: "Itin tamprūs ir plyšimui atsparūs apatiniai. Kad po netyčio persikeitimo netektų slėptis už krūmo.",
+        description: "Itin tamprūs ir plyšimui atsparūs apatiniai. Kad po netyčinio persikeitimo netektų slėptis už krūmo.",
         category: "werewolf",
         variants: "Įvairių dizainų",
         price: 9.99,
