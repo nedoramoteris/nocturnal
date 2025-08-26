@@ -105,7 +105,7 @@ const products = [
        {id: 13,
         title: "Taro kortos",
         description: "",
-        category: "witch",
+        category: "witches",
         variants: "Pastaba: kortos atpažįsta raganos, todėl pranašystės tikslios tik tuomet, kai jas skaito antgamtinių gebėjimų turintys asmenys.",
         price: 30.99,
         image: "https://i.pinimg.com/1200x/8c/2e/99/8c2e99836c44a7a82e252e0af238d381.jpg"
@@ -441,4 +441,5 @@ cartBtn.addEventListener('click', (e) => {
     e.stopPropagation(); // Prevent immediate closing
     toggleCartPopup();
 });
+
 
