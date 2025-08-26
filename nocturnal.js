@@ -93,6 +93,38 @@ const products = [
         variants: "Įvairių dizainų",
         price: 9.99,
         image: "https://i.pinimg.com/736x/5d/3d/41/5d3d419dadc2419c0c29d3ac3bde61a2.jpg"
+    },
+       {id: 12,
+        title: "Ouija lenta",
+        description: "Patogesniam susisiekimui su anapusiniu pasauliu.",
+        category: "universal",
+        variants: "Galimos abėcėlės: lotyniška, kirilica, graikų, arabų.",
+        price: 75.99,
+        image: "https://i.pinimg.com/1200x/e2/f0/56/e2f05663d9e574e9090b03c728c9e181.jpg"
+    },
+       {id: 13,
+        title: "Taro kortos",
+        description: "",
+        category: "witch",
+        variants: "Pastaba: kortos atpažįsta raganos, todėl pranašystės tikslios tik tuomet, kai jas skaito antgamtinių gebėjimų turintys asmenys.",
+        price: 30.99,
+        image: "https://i.pinimg.com/1200x/8c/2e/99/8c2e99836c44a7a82e252e0af238d381.jpg"
+    },
+  {id: 14,
+        title: "Eye of Truth",
+        description: "Užkerėtas amuletas, kuris ima skleisti šilumą, kai jį dėvinčiam asmeniui yra meluojama.",
+        category: "universal",
+        variants: "Galima rinktis iš 5 skirtingų dizainų.",
+        price: 150.99,
+        image: "https://i.pinimg.com/1200x/68/96/e6/6896e60d00c16d2ae105d348b6b57bb9.jpg"
+    },
+    {id: 15,
+        title: "Antgamtinis žibintas",
+        description: "Šio žibinto šviesoje galima matyti plika akimi neregimas būtybes (pvz. dvasias) arba ant sienų paliktas užkeikimų žymes.",
+        category: "universal",
+        variants: "",
+        price: 250,
+        image: "https://i.pinimg.com/736x/1d/e4/14/1de414105261c9e85acb5dab7d49aa7f.jpg"
     }
 ];
 
@@ -409,3 +441,4 @@ cartBtn.addEventListener('click', (e) => {
     e.stopPropagation(); // Prevent immediate closing
     toggleCartPopup();
 });
+
